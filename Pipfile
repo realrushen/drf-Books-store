@@ -8,6 +8,7 @@ django = "*"
 psycopg2-binary = "*"
 djangorestframework = "*"
 coverage = "*"
+django-filter = "*"
 
 [dev-packages]
 
