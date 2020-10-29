@@ -9,6 +9,7 @@ psycopg2-binary = "*"
 djangorestframework = "*"
 coverage = "*"
 django-filter = "*"
+social-auth-app-django = "*"
 
 [dev-packages]
 
