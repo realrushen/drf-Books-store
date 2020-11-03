@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from Books.secrets import DJANGO_SECRET_KEY, BOOKS_APP_SOCIAL_AUTH_GITHUB_KEY, BOOKS_APP_SOCIAL_AUTH_GITHUB_SECRET
+from Books.secrets import DJANGO_SECRET_KEY, BOOKS_APP_SOCIAL_AUTH_GITHUB_KEY, BOOKS_APP_SOCIAL_AUTH_GITHUB_SECRET, \
+    BOOKS_DB_PASSWORD
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -82,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'books_db',
         'USER': 'books_admin',
-        'PASSWORD': 'd017a5',
+        'PASSWORD': BOOKS_DB_PASSWORD,
         'HOST': 'localhost',
         'PORT': '',
     }
