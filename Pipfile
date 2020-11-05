@@ -7,11 +7,11 @@ name = "pypi"
 django = "*"
 psycopg2-binary = "*"
 djangorestframework = "*"
-coverage = "*"
 django-filter = "*"
 social-auth-app-django = "*"
 
 [dev-packages]
+coverage = "*"
 
 [requires]
 python_version = "3.8"
