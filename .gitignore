@@ -141,4 +141,4 @@ cython_debug/
 
 .idea/
 /Books/secrets.py
-/store/migrations/
+/.env.secret
