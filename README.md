@@ -1,6 +1,8 @@
 # Books store
 #### _Simple api service, that allow to sell and read books_
 
+_*WARNING:* This README not fully completed yet, work in progress_
+
 This project was developed only for educational purposes 
 
 ## Features
