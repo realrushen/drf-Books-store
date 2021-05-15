@@ -9,25 +9,39 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
+from dotenv import load_dotenv, dotenv_values
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from Books.secrets import DJANGO_SECRET_KEY, BOOKS_APP_SOCIAL_AUTH_GITHUB_KEY, BOOKS_APP_SOCIAL_AUTH_GITHUB_SECRET, \
-    BOOKS_DB_PASSWORD
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Loading configurations
+load_dotenv(BASE_DIR)
+config = {
+    **dotenv_values(".env.shared"),  # load shared development variables
+    **dotenv_values(".env.secret"),  # load sensitive variables
+    **os.environ,  # override loaded values with environment variables
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = DJANGO_SECRET_KEY
+SECRET_KEY = config['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(config['DEBUG'])
 
 ALLOWED_HOSTS = []
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+
+]
 
 # Application definition
 
@@ -39,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'debug_toolbar',
     'rest_framework',
     'social_django',
 
@@ -46,6 +61,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar_force.middleware.ForceDebugToolbarMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -83,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'books_db',
         'USER': 'books_admin',
-        'PASSWORD': BOOKS_DB_PASSWORD,
+        'PASSWORD': config['BOOKS_DB_PASSWORD'],
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -146,5 +164,5 @@ AUTHENTICATION_BACKENDS = (
 
 # GitHub credentials
 
-SOCIAL_AUTH_GITHUB_KEY = BOOKS_APP_SOCIAL_AUTH_GITHUB_KEY
-SOCIAL_AUTH_GITHUB_SECRET = BOOKS_APP_SOCIAL_AUTH_GITHUB_SECRET
+SOCIAL_AUTH_GITHUB_KEY = config['BOOKS_APP_SOCIAL_AUTH_GITHUB_KEY']
+SOCIAL_AUTH_GITHUB_SECRET = config['BOOKS_APP_SOCIAL_AUTH_GITHUB_SECRET']

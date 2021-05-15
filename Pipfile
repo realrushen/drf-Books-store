@@ -9,9 +9,12 @@ psycopg2-binary = "*"
 djangorestframework = "*"
 django-filter = "*"
 social-auth-app-django = "*"
+python-dotenv = "*"
 
 [dev-packages]
 coverage = "*"
+django-debug-toolbar = "*"
+django-debug-toolbar-force = "*"
 
 [requires]
 python_version = "3.8"
