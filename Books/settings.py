@@ -16,7 +16,6 @@ from dotenv import load_dotenv, dotenv_values
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Loading configurations
@@ -99,11 +98,11 @@ WSGI_APPLICATION = 'Books.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'books_db',
-        'USER': 'books_admin',
-        'PASSWORD': config['BOOKS_DB_PASSWORD'],
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': config['POSTGRES_DB_NAME'],
+        'USER': config['POSTGRES_DB_USER'],
+        'PASSWORD': config['POSTGRES_DB_PASSWORD'],
+        'HOST': config['POSTGRES_DB_HOST'],
+        'PORT': config['POSTGRES_DB_PORT'],
     }
 }
 
@@ -166,3 +165,5 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_GITHUB_KEY = config['BOOKS_APP_SOCIAL_AUTH_GITHUB_KEY']
 SOCIAL_AUTH_GITHUB_SECRET = config['BOOKS_APP_SOCIAL_AUTH_GITHUB_SECRET']
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
