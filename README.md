@@ -15,7 +15,7 @@ This project was developed only for educational purposes
 
 ## Installation
 
-To setup development environment you need python 3.8+ and [pipenv](https://pipenv.pypa.io/en/latest/), PostgreSQL 12.6 
+To setup development environment you need python 3.8+, [pipenv](https://pipenv.pypa.io/en/latest/) and PostgreSQL 12.6 
 
 - Clone repository and install dependences
 ```shell script
